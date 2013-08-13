@@ -1,0 +1,81 @@
+Project
+=======
+Daily Brief
+Code: git@github.com:codeforamerica/311DailyBrief.git
+
+
+http://coenraets.org/blog/2011/12/restful-services-with-jquery-php-and-the-slim-framework/
+
+
+Based off of Backbone Boilerplate https://github.com/tbranyen/backbone-boilerplate/contributors
+
+What it would take to stand this up:
+
+   * Getting the End Points, Boundaries, and Services.
+   * Setting up the map - http://leafletjs.com/
+
+Data
+====
+
+There are three major chunks of data, the end points ie 311 calls,
+data for the pulldowns -  Boundaries and Services, and
+Map and Tiles.
+
+
+End Points
+----------
+End points are proviced by an API, from the JS code on the browser
+
+code: assets/js/libs/threeoneoneapi.js   is where they pull the data from, last function.
+
+Sample:
+
+Format is JSON
+
+_id 						"baltimore.5074bbf6d3e2c21694000370"
+status 					"open"
+loc 						[-76.6436, 39.286289]
+					   		0 -76.6436
+					   		1 39.286289
+endpoint 				"baltimore"
+description 			"garbage"
+service_code 			"4e39a3aad3e2c20ed800000a"
+service_name 			"Dirty Alley or Street"
+service_request_id 	"12-00777817"
+updated_datetime 		"2012-10-09T20:08:12-04:00"
+requested_datetime 	"2012-10-09T20:06:14-04:00"
+long 						-76.6436
+token 					"5074bbf6d3e2c21694000370"
+address 					"1603-1699 W Lombard St Baltimore, MD 21223"
+lat 						39.286289
+boundary 				"Union Square"
+media_url 				"http://311.baltimorecity.gov/attachments/report/5074bbf6d3e2c21694000370/photo/Report.jpg"
+
+
+Boundaries and Services
+-----------------------
+Looks like the list of Neighborhood's and Services for the pulldown.
+
+https://api.mongohq.com/databases/chicago/collections/distinct/documents?q={%22_id%22:%20baltimore}&_apikey=i0h95kvp3dyx14hvw9bl&callback=jQuery17207706340783744886_1375819042077&_=1375819042515
+
+Boundaries are names with two x,y pairs
+
+Services are two fields, name and code, which are duplicated in the End Points.
+
+
+
+Map and Tiles
+-------------
+http://c.tile.stamen.com/toner-lite/13/2352/3122.jpg is an example of the tiles that they use.
+
+Powerd by: http://leaflet.cloudmade.com/ - This is where we need to go.
+Map Data: http://openstreetmap.org/
+Contributors: http://creativecommons.org/licenses/by-sa/2.0/
+Tiles By: http://stamen.com/
+
+Used in assets/js/libs/mapcontroller.canvasrenderer.js 
+Looks like tiles are pulled in assets/js/libs/mapcontroller.js   line 53
+
+
+
+
